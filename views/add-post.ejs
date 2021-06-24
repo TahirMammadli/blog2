@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
+
+<body>
+  <%- include('./includes/nav.ejs') %>
+    <form action="/post-add-post" method="POST">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <div class="form-group">
+          <label for="text">Title</label>
+          <input type="text" name="title" class="form-control" id="post-title">
+        </div>
+        <div class="form-group">
+          <label for="post-content">Content</label>
+          <textarea name="content" id="content" cols="60" rows="10"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Post</button>
+      </form>
+</body>
+</html>
