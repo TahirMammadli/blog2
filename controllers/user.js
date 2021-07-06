@@ -4,15 +4,15 @@ const bcrypt = require("bcryptjs");
 const sendGrid = require("@sendgrid/mail");
 const crypto = require("crypto");
 const { send } = require("process");
-sendGrid.setApiKey(
-  "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"
-);
+const api_key = require("../config")
+
+sendGrid.setApiKey(api_key);
 
 const msg = {
   to: "tahirmammadli13@gmail.com",
   from: "forsendgrid1@gmail.com",
-  subject: "suck ass",
-  text: "suck me balls",
+  subject: "Testing...",
+  text: "Testing...",
 };
 
 exports.postSignup = (req, res, next) => {
@@ -87,7 +87,6 @@ exports.postResetPassword = (req, res, next) => {
     } else {
       const token = buffer.toString("hex");
       User.findOne({email: email}).then((user) => {
-        console.log("OOOOOOOOOOO", user);
         if (!user) {
           console.log("no user found");
           res.redirect("/getLogin");
@@ -100,12 +99,12 @@ exports.postResetPassword = (req, res, next) => {
           const msgResetPassword = {
             to: req.body.email,
             from: "forsendgrid1@gmail.com",
-            subject: "suck ass",
+            subject: "Testing...",
             html: `Reset your password <a href="http://localhost:3000/reset/${token}">Reset</a>`,
           };
           sendGrid.send(msgResetPassword, (err, info) => {
             if (err) {
-              console.log("email send failed");
+              console.log("sending email failed");
             } else {
               console.log("success");
             }

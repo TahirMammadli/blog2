@@ -26,7 +26,7 @@ exports.getSinglePost = (req, res, next) => {
   });
 };
 
-exports.getAddPost = (req, res, next) => {
+exports.get_share_a_post = (req, res, next) => {
   res.render("add-post", {
     showLoginSignup: false,
     // isAuthenticated: req.session.isLoggedIn
