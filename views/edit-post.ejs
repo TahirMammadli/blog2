@@ -13,8 +13,7 @@
 
 
 <form action="/post-edit-post" method="POST">
-  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-    <div class="form-group">
+    <div class="form-group">      
       <label for="text">Title</label>
       <input type="text" name="title" class="form-control" id="post-title" value="<%= post.title %>"> 
     </div>
@@ -23,9 +22,9 @@
       <input type="text" value="<%= post.content %>"></textarea>
     </div>
     <input type="hidden" value="<%= post._id %>" name="postId">
-
     <button type="submit" class="btn btn-primary">Post</button>
-  </form>
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+</form>
 </body>
 </html>
 

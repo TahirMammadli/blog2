@@ -2,7 +2,6 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
 
 <form action="/postSignup" method="POST">
-    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
     <label for="email">Email address</label>
     <input type="text" name="email">
     <label for="password">Password</label>
@@ -10,4 +9,6 @@
     <label for="confirmPassword">Confirm Password</label>
     <input type="text" name="confirmPassword">
     <button type="submit">Sign Up</button>
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
 </form>

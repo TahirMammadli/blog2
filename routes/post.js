@@ -6,17 +6,22 @@ const isAuth = require("../middleware/is-auth")
 
 
 router.get("/", postController.getIndex);
-router.get("/get-add-post", isAuth.isAuth, postController.getAddPost);
-router.post("/post-add-post",isAuth.isAuth, postController.postAddPost);
-router.get("/get-single-post/:postId",isAuth.isAuth, postController.getSinglePost)
+router.get("/get-add-post",  postController.getAddPost);
+router.post("/post-add-post", postController.postAddPost);
+router.get("/get-single-post/:postId", postController.getSinglePost)
 router.get("/delete-post/:postId",isAuth.isAuth, postController.deletePost)
-router.post("/post-edit-post",isAuth.isAuth, postController.postEditPost);
-router.get("/get-edit-post/:postId",isAuth.isAuth, postController.getEditPost);
+router.post("/post-edit-post", postController.postEditPost);
+router.get("/get-edit-post/:postId", postController.getEditPost);
 router.get("/getLogin", postController.getLogin)
-router.get("/getSignup", isAuth.isAuth,postController.getSignup)
-router.post("/postSignup",isAuth.isAuth, userController.postSignup)
-router.post("/postLogin",isAuth.isAuth, userController.postLogin)
-router.post("/logout", isAuth.isAuth,userController.logout)
+router.get("/getSignup",postController.getSignup)
+router.post("/postSignup", userController.postSignup)
+router.post("/postLogin", userController.postLogin)
+router.post("/logout",userController.logout)
+router.get("/getResetPassword", userController.getResetPassword)
+router.post("/postResetPassword", userController.postResetPassword)
+router.get("/reset/:token", userController.getNewPassword)
+router.post("/post-new-password", userController.postNewPassword)
+
 
 
 

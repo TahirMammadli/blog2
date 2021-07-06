@@ -1,0 +1,29 @@
+a{
+    text-decoration: none;
+}
+
+.logo a{
+    color: darkred;
+    width: 80%;
+    font-size: 35;
+    margin:50px
+}
+
+.main-header > div {
+    display: inline-block;
+    text-align: center;
+}
+.main-nav{
+    display: inline-block;
+    width: calc(100% - 82);
+}
+.main-nav-list-items{
+    padding: 0;
+    margin: 0;
+}
+.main-nav-list-item{
+    display: inline-block;
+    margin: 0 10px;
+    font-size: 25px;
+    text-align: right;
+}

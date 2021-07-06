@@ -1,4 +1,21 @@
-const getDb = require("../util/db").getDb;
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
+const postSchema = new Schema({
+  title: {
+    type: String,
+    required: true
+  },
+  content: {
+    type: String,
+    required: true
+  }
+})
+
+
+module.exports = mongoose.model('Post', postSchema)
+
+// USING MONGODB DRIVER 
+/*const getDb = require("../util/db").getDb;
 const mongoDb = require("mongodb");
 
 class Post {
@@ -77,3 +94,5 @@ static deletePost(postId) {
 }
 
 module.exports = Post;
+
+*/

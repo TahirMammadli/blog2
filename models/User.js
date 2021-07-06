@@ -1,14 +1,44 @@
-const getDb = require("../util/db").getDb;
-const mongoDb = require("mongodb");
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema 
+const userSchema = new Schema({
+  email: {
+    type: String,
+    required: true
+  },
+  password: {
+    type: String,
+    required: true
+  },
+  resetToken: String,
+  resetTokenExpiration: String
+})
 
-class User {
+module.exports = mongoose.model('User', userSchema)
+
+
+
+
+
+
+
+
+
+// USING MONGODB DRIVER
+/*class User {
   constructor(email, password) {
     this.email = email;
     this.password = password;
+    
   }
+  static resetToken;
+  static resetTokenExpiration;
   save() {
     const db = getDb();
     db.collection("users").insertOne(this);
+  }
+  saveToken() {
+    const db = getDb();
+    db.collection("users").insertOne(this.resetToken, this.resetTokenExpiration);
   }
 
   static findByEmail(email) {
@@ -24,3 +54,4 @@ class User {
 }
 
 module.exports = User;
+*/

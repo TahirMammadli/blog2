@@ -1,32 +1,55 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <h1><a class="navbar-brand" href="#">Useless App</a></h1>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav">
-        <li class="nav-item active">
-          <a class="nav-link" href="/">Home<span class="sr-only"></span></a>
-        </li>
-        <% if(isAuthenticated) { %>
-          <li class="nav-item">
-            <a class="nav-link" href="/get-add-post">Add Post</a>
-          </li>
-         <form action="/logout" method="POST">
-          <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-          <button>Logout</button>
-         </form>
-        <% } %>
-        
-        <% if(showLoginSignup) { %>
-        <li class="nav-item">
-          <a class="nav-link" href="/getLogin">Login</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/getSignup">Sign Up</a>
-        </li>     
-        <% } %>   
-            
-      </ul>
-    </div>
+<nav>
+  <div class="nav-wrapper">
+    <a href="#" class="brand-logo">Library</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a href="sass.html">Available Books</a></li>
+      <li><a href="badges.html">Book Reviews</a></li>
+      <li><a href="collapsible.html">My Books</a></li>
+      <li><a href="sass.html">Share a Post</a></li>
+
+      <li><a href="sass.html">Login</a></li>
+      <li><a href="sass.html">Sign Up</a></li>
+      <li><a href="sass.html">Logout</a></li>
+
+
+
+    </ul>
+  </div>
+</nav>
+
+<!-- <header class="main-header">
+
+  <div>
+    <img src="/book.jpg" width="50" height="50" alt=""/>
+    <h1 class="logo"><a href="#">Library</a></h1>
+  </div><nav class="main-nav">
+  
+  <ul class="main-nav-list-items">
+      <li class="main-nav-list-item">
+        <a class="nav-link" href="/">Available Books</a>
+      </li>
+      <li class="main-nav-list-item">
+        <a class="nav-link" href="/get-add-post">Book Reviews</a>
+      </li>
+      <li class="main-nav-list-item">
+        <a class="nav-link" href="/">My Books</a>
+      </li>
+
+      <li class="main-nav-list-item">
+        <a class="nav-link" href="/get-add-post">Share a Post</a>
+      </li>
+      <li class="main-nav-list-item">
+        <a class="nav-link" href="/getLogin">Login</a>
+      </li>
+      <li class="main-nav-list-item">
+        <a class="nav-link" href="/getSignup">Sign Up</a>
+      </li>
+      <form action="/logout" method="POST">
+        <button>Logout</button>
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+      </form>
+
+      
+    </ul>
   </nav>
+</header> -->
