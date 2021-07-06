@@ -4,9 +4,9 @@ const bcrypt = require("bcryptjs");
 const sendGrid = require("@sendgrid/mail");
 const crypto = require("crypto");
 const { send } = require("process");
-const api_key = require("../config")
+const configjs = require("../config")
 
-sendGrid.setApiKey(api_key);
+sendGrid.setApiKey(configjs.apiKey);
 
 const msg = {
   to: "tahirmammadli13@gmail.com",
@@ -22,7 +22,7 @@ exports.postSignup = (req, res, next) => {
   User.findOne({email: email}).then((result) => {
     if (result) {
       console.log(result);
-      res.redirect("/getSignup");
+      res.redirect("/signup");
     }
   });
   return bcrypt
@@ -32,7 +32,7 @@ exports.postSignup = (req, res, next) => {
       return user.save();
     })
     .then((result) => {
-      res.redirect("/getLogin");
+      res.redirect("/login");
       sendGrid.send(msg, function (err, info) {
         if (err) {
           console.log("Email wasnt sent");
@@ -59,7 +59,7 @@ exports.postLogin = (req, res, next) => {
             res.redirect("/");
           });
         } else {
-          res.redirect("/getLogin");
+          res.redirect("/login");
         }
       });
     }
@@ -89,7 +89,7 @@ exports.postResetPassword = (req, res, next) => {
       User.findOne({email: email}).then((user) => {
         if (!user) {
           console.log("no user found");
-          res.redirect("/getLogin");
+          res.redirect("/login");
         } else {          
           user.resetToken = token;
           user.resetTokenExpiration = Date.now() + 3600000;
@@ -151,7 +151,7 @@ exports.postNewPassword = (req,res,next) => {
     return resetUser.save()
   })
   .then(result => {
-    res.redirect('/getLogin')
+    res.redirect('/login')
   })
   .catch(err => console.log(err))
 }

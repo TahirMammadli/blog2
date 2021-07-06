@@ -7,11 +7,12 @@ const MongoDBStore = require("connect-mongodb-session")(session);
 const csrf = require("csurf");
 const mongoose = require("mongoose")
 const path = require("path")
+const configjs = require("./config")
 
 app.use(express.static(path.join(__dirname, 'public')))
 
 const store = new MongoDBStore({
-  uri: "mongodb+srv://m001-student:m001-mongodb-basics@sandbox.2pcwm.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+  uri: configjs.MONGODB_URI,
   collection: "sessions",
 });
 
@@ -38,7 +39,7 @@ app.use((req, res, next) => {
 
 app.use(postRoutes);
 
-mongoose.connect('mongodb+srv://m001-student:m001-mongodb-basics@sandbox.2pcwm.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
+mongoose.connect(configjs.MONGODB_URI)
 .then(result => {
   console.log('connected!')
   app.listen(3000)
