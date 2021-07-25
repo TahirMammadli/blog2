@@ -1,6 +1,7 @@
 a{
     text-decoration: none;
 }
+*
 
 .logo a{
     color: darkred;
@@ -27,3 +28,26 @@ a{
     font-size: 25px;
     text-align: right;
 }
+
+#logout{
+    background: none;
+    border: none;
+    color: white;
+}
+
+
+.user-message{
+    margin: 40px;
+    width: 40%;
+    background: red;
+    padding: 10px;
+    border-radius: 3px;
+}
+
+.user-message-erro {
+    border-color: red;
+    background: (255, 176, 176);
+    color: red;
+}
+
+

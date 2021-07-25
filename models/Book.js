@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-const postSchema = new Schema({
+const bookSchema = new Schema({
   title: {
     type: String,
     required: true
@@ -8,11 +8,20 @@ const postSchema = new Schema({
   content: {
     type: String,
     required: true
+  },
+  img_url: {
+    type: String,
+    required: false
+  },
+  user_id: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
   }
 })
 
 
-module.exports = mongoose.model('Post', postSchema)
+module.exports = mongoose.model('Book', bookSchema)
 
 // USING MONGODB DRIVER 
 /*const getDb = require("../util/db").getDb;

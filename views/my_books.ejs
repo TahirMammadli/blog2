@@ -1,0 +1,36 @@
+<%- include('includes/head.ejs') %>
+</head>
+<body>
+<%- include('./includes/nav.ejs') %>
+
+
+
+<div class="row">
+<% if(books.length > 0){ %>
+    <% for(let book of books) { %>
+  
+      <div class="col s8 m3">
+        <div class="card" >
+          <div class="card-image">
+            <img src="/book.jpg" width="20" height="200">
+          </div>
+          <div class="card-content">
+            <p><%= book.title %></p>
+          </div>
+          <div class="card-content">
+            <p><%= book.body %></p>
+          </div>
+          <div class="card-action">
+            <a href="#">Rent</a>
+            <a href="#">Add To Library</a>
+          </div>
+        </div> 
+      </div>
+  <% } %>
+  <% }else{ %>
+              <!-- <h1>No products found</h1> -->
+  <% } %>
+  
+</div>
+
+   

@@ -1,0 +1,13 @@
+<%- include('includes/head.ejs') %>
+</head>
+<body>
+<%- include('./includes/nav.ejs') %>
+<% if(reviews.length > 0){ %>
+    <% for(let review of reviews) { %>
+        <ul>          
+            <li><a href="/review/<%= review._id %>"><%= review.title %></a></li>
+            <li><%= review.body %></li>
+    <% } %>
+    <% }else{ %>
+                <!-- <h1>No products found</h1> -->
+    <% } %>

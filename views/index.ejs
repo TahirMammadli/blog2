@@ -4,102 +4,40 @@
 <%- include('./includes/nav.ejs') %>
 
 
+
+
+
+<% if(books.length > 0){ %>
+  <% for(let book of books) { %>
 <div class="row">
-  <div class="col s8 m3">
-    <div class="card" >
-      <div class="card-image">
-        <img src="/book2.jpg" width="20" height="200">
-      </div>
-      <div class="card-content">
-        <p>Crime and Punishment</p>
-      </div>
-      <div class="card-action">
-        <a href="#">Rent</a>
-        <a href="#">Add To Library</a>
-
-      </div>
+    <div class="col s8 m3">
+      <div class="card" >
+        <div class="card-image">
+          <img src="/book.jpg" width="20" height="200">
+        </div>
+        <div class="card-content">
+          <p><a href="/books/<%= book._id %>"></a><%= book.title %></p>
+        </div>
+        <div class="card-content">
+          <p><%= book.content %></p>
+        </div>
+        <div class="card-content">
+          <p>Posted by: <b><%= user.first_name %> <%= user.last_name %></b></p>
+        </div>
+        <div class="card-action">
+          <a href="#">Rent</a>
+          <a href="#">Add To Library</a>
+        </div>
+      </div> 
     </div>
-    
-  </div>
-
-  <div class="col s8 m3">
-    <div class="card" >
-      <div class="card-image">
-        <img src="/book4.jpg" width="20" height="200">
-    </div>
-      <div class="card-content">
-        <p>Crime and Punishment</p>
-      </div>
-      <div class="card-action">
-        <a href="#">Rent</a>
-        <a href="#">Add To Library</a>
-
-      </div>
-    </div>
-    
-  </div><div class="col s8 m3">
-    <div class="card" >
-      <div class="card-image">
-        <img src="/book7.jpg" width="20" height="200">
-      </div>
-      <div class="card-content">
-        <p>Crime and Punishment</p>
-      </div>
-      <div class="card-action">
-        <a href="#">Rent</a>
-        <a href="#">Add To Library</a>
-      </div>
-      </div>
-    
-  </div>
-  <div class="col s8 m3">
-    <div class="card" >
-      <div class="card-image">
-        <img src="/book5.jpg" width="20" height="200">
-      </div>
-      <div class="card-content">
-        <p>Crime and Punishment</p>
-      </div>
-      <div class="card-action">
-        <a href="#">Rent</a>
-        <a href="#">Add To Library</a>
-
-      </div>
-    </div>
-    
-  </div>
-  <div class="col s8 m3">
-    <div class="card" >
-      <div class="card-image">
-        <img src="/book3.jpg" width="20" height="200">
-      </div>
-      <div class="card-content">
-        <p>Crime and Punishment</p>
-      </div>
-      <div class="card-action">
-        <a href="#">Rent</a>
-        <a href="#">Add To Library</a>
-
-      </div>
-    </div>
-    
-  </div>
 </div>
+<% } %>
+<% }else{ %>
+            <!-- <h1>No products found</h1> -->
+<% } %>
 
 
- <% if(posts.length > 0){ %>
-  <% for(let post of posts) { %>
-      <ul>
-        
-          <li><a href="/get-single-post/<%= post._id %>"><%= post.title %></a></li>
-          <li><%= post.content %></li>
-        <button><a href="/get-edit-post/<%= post._id %>">Edit</a></button>
-        <button><a href="/delete-post/<%= post._id %>">Delete</a></button>
-      </ul>
-      <% } %>
-      <% }else{ %>
-          <!-- <h1>No products found</h1> -->
-      <% } %>
+ 
 
 
     

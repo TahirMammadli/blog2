@@ -5,11 +5,15 @@ const postRoutes = require("./routes/post");
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 const csrf = require("csurf");
-const mongoose = require("mongoose")
-const path = require("path")
-const configjs = require("./config")
+const mongoose = require("mongoose");
+const path = require("path");
+const sendGrid = require("@sendgrid/mail");
+sendGrid.setApiKey(apikey);
+const flash = require("connect-flash");
 
-app.use(express.static(path.join(__dirname, 'public')))
+const User = require("./models/User");
+
+app.use(express.static(path.join(__dirname, "public")));
 
 const store = new MongoDBStore({
   uri: configjs.MONGODB_URI,
@@ -30,6 +34,7 @@ app.use(
   })
 );
 app.use(csrfProtection);
+app.use(flash());
 
 app.use((req, res, next) => {
   res.locals.isLoggedIn = req.session.isLoggedIn;
@@ -37,11 +42,38 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use((req, res, next) => {
+  if (!req.session.user) {
+    return next();
+  }
+  User.findById(req.session.user._id)
+    .then((user) => {
+      req.user = user;
+      next();
+    })
+    .catch((err) => console.log(err));
+});
+
+const msg = {
+  to: "tahirmammadli13@gmail.com",
+  from: "forsendgrid1@gmail.com",
+  subject: "Testing...",
+  text: "Testing...",
+};
+
+app.use("/sendemail", (req, res, next) => {
+  sendGrid
+    .send(msg)
+    .then((res) => console.log(res))
+    .catch((err) => console.log(err));
+});
+
 app.use(postRoutes);
 
-mongoose.connect(configjs.MONGODB_URI)
-.then(result => {
-  console.log('connected!')
-  app.listen(3000)
-})
-.catch(err => console.log(err))
+mongoose
+  .connect(MONGODB_URI)
+  .then((result) => {
+    console.log("connected!");
+    app.listen(3000);
+  })
+  .catch((err) => console.log(err));

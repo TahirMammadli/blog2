@@ -3,14 +3,57 @@
 <body>
 <%- include('./includes/nav.ejs') %>
 
-<form action="/signup" method="POST">
-    <label for="email">Email address</label>
-    <input type="text" name="email">
-    <label for="password">Password</label>
-    <input type="text" name="password">
-    <label for="confirmPassword">Confirm Password</label>
-    <input type="text" name="confirmPassword">
-    <button type="submit">Sign Up</button>
-    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+<% if(errorMessage) { %>
+  <div class="user-message user-message-error">
+      <%= errorMessage %>
+  </div>
+  <% } %>
+
+<div class="row">
+    <form class="col s6" action="/signup" method="POST">
+      <div class="row">
+        <div class="input-field col s6">
+          <input name="first_name" type="text" class="validate" placeholder="First Name" value="<%= oldInput.first_name %>">
+        </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s6">
+            <input name="last_name" type="text" class="validate" placeholder="Last Name" value="<%= oldInput.last_name %>">
+          </div>
+          </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input name="email" type="text" class="validate" placeholder="Email address" value="<%= oldInput.email %>">
+            
+        </div>
+    </div>
+
+        <div class="row">
+        <div class="input-field col s6">
+          <input name="password" type="password" placeholder="Password" value="<%= oldInput.password %>">
+        </div>
+        </div>
+
+      <div class="row">
+        <div class="input-field col s6">
+          <input name="confirm_password" type="password" class="validate" placeholder="Confirm Password" value="<%= oldInput.confirm_password %>">
+        </div>
+      </div>
+      
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+      <button type="submit">Sign Up</button>
 
 </form>
+</div>
+
+
+
+
+<script>
+  setTimeout(() => {
+      document.querySelector('.user-message')
+      .remove()
+  }, 3000)
+</script>
+

@@ -1,0 +1,41 @@
+<%- include('includes/head.ejs') %>
+</head>
+<body>
+<%- include('./includes/nav.ejs') %>
+
+
+<div class="row">
+    <form class="col s6" action="/postAddBooks" method="POST">
+      <div class="row">
+        <div class="input-field col s6">
+          <input name="title" type="text" class="validate">
+          <label for="title">Title</label>
+        </div>
+    </div>
+
+        <div class="row">
+        <div class="input-field col s6">
+          <input name="content" type="text">
+          <label for="content">Content</label>
+        </div>
+        </div>
+
+      <div class="row">
+        <div class="input-field col s6">
+          <input name="image_url" type="text" class="validate">
+          <label for="image_url">Image URL</label>
+        </div>
+      </div>
+      
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+      <button type="submit">Add to My Books</button>
+
+</form>
+</div>
+
+
+
+
+
+
