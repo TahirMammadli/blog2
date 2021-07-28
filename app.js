@@ -1,22 +1,26 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
-const postRoutes = require("./routes/post");
+const bookRoutes = require("./routes/book");
+const authRoutes = require("./routes/auth")
+const favoritesRoutes = require("./routes/favorites")
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 const csrf = require("csurf");
 const mongoose = require("mongoose");
 const path = require("path");
 const sendGrid = require("@sendgrid/mail");
-sendGrid.setApiKey(apikey);
 const flash = require("connect-flash");
+const {apikey, MONGODB_URI} = require('./config')
+sendGrid.setApiKey(apikey);
+
 
 const User = require("./models/User");
 
 app.use(express.static(path.join(__dirname, "public")));
 
 const store = new MongoDBStore({
-  uri: configjs.MONGODB_URI,
+  uri: MONGODB_URI,
   collection: "sessions",
 });
 
@@ -68,10 +72,13 @@ app.use("/sendemail", (req, res, next) => {
     .catch((err) => console.log(err));
 });
 
-app.use(postRoutes);
+app.use(authRoutes)
+app.use(bookRoutes);
+app.use(favoritesRoutes);
+
 
 mongoose
-  .connect(MONGODB_URI)
+  .connect(MONGODB_URI, {useNewUrlParser: true, useUnifiedTopology: true})
   .then((result) => {
     console.log("connected!");
     app.listen(3000);

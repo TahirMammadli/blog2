@@ -6,10 +6,10 @@
 
 
 
+<div class="row">
 
 <% if(books.length > 0){ %>
   <% for(let book of books) { %>
-<div class="row">
     <div class="col s8 m3">
       <div class="card" >
         <div class="card-image">
@@ -22,19 +22,21 @@
           <p><%= book.content %></p>
         </div>
         <div class="card-content">
-          <p>Posted by: <b><%= user.first_name %> <%= user.last_name %></b></p>
         </div>
         <div class="card-action">
-          <a href="#">Rent</a>
-          <a href="#">Add To Library</a>
+          <a href="/rent-form">Rent</a>
+          <form action="/addToFavorites/<%= book._id %>" method="POST">
+            <button>Add To Favorites</button>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">            
+          </form>
         </div>
       </div> 
-    </div>
 </div>
 <% } %>
 <% }else{ %>
             <!-- <h1>No products found</h1> -->
 <% } %>
+</div>
 
 
  

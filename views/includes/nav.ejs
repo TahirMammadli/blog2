@@ -1,6 +1,13 @@
+
+<style>
+  form{
+    width: 50%;
+    margin: 30px;
+  }
+</style>
 <nav>
   <div class="nav-wrapper">
-    <a href="/" class="brand-logo">Book App</a>
+    <a href="/" class="brand-logo">Library</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
       <li><a href="sass.html">All Books</a></li>
     <% if(!isLoggedIn) { %> 
@@ -13,7 +20,7 @@
 
 
     <% if(isLoggedIn) { %> 
-      <li><a href="/mybooks">My Books</a></li>
+      <li><a href="/favorites">Favorites</a></li>
       <li><a href="/addbooks">Add Books</a></li>
     <% } %>
 

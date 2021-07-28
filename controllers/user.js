@@ -5,6 +5,58 @@ const crypto = require("crypto");
 const { send } = require("process");
 const { validationResult } = require("express-validator/check");
 
+
+
+
+
+
+exports.getLogin = (req, res, next) => {
+  let message = req.flash("error");
+  if (message.length > 0) {
+    message = message[0];
+  } else {
+    message = null;
+  }
+  res.render("login", {
+    isAuthenticated: false,
+    errorMessage: message,
+    showLoginSignup: true,
+  });
+};
+
+exports.getSignup = (req, res, next) => {
+  let message = req.flash("error");
+  if (message.length > 0) {
+    message = message[0];
+  } else {
+    message = null;
+  }
+  res.render("signup", {
+    isAuthenticated: false,
+    errorMessage: message,
+    showLoginSignup: true,
+    oldInput: {
+      email: "",
+      password: "",
+      first_name: "",
+      last_name: "",
+      confirm_password: "",
+    },
+  });
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
 exports.postSignup = (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;

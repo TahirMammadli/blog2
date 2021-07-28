@@ -6,8 +6,8 @@
 
 
 <div class="row">
-<% if(books.length > 0){ %>
-    <% for(let book of books) { %>
+<% if(favorites.length > 0){ %>
+    <% for(let favorite of favorites) { %>
   
       <div class="col s8 m3">
         <div class="card" >
@@ -15,14 +15,18 @@
             <img src="/book.jpg" width="20" height="200">
           </div>
           <div class="card-content">
-            <p><%= book.title %></p>
+            <p><%= favorite.title %></p>
           </div>
           <div class="card-content">
-            <p><%= book.body %></p>
+            <p><%= favorite.body %></p>
           </div>
           <div class="card-action">
             <a href="#">Rent</a>
             <a href="#">Add To Library</a>
+            <form action="/deleteFromFavorites/<%= favorite._id %>" method="POST">
+              <button>Remove from favorites</button>
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            </form>
           </div>
         </div> 
       </div>

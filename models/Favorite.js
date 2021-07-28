@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-const bookSchema = new Schema({
+const favoriteSchema = new Schema({
   title: {
     type: String,
     required: true
@@ -21,7 +21,7 @@ const bookSchema = new Schema({
 })
 
 
-module.exports = mongoose.model('Book', bookSchema)
+module.exports = mongoose.model('Favorite', favoriteSchema)
 
 // USING MONGODB DRIVER 
 /*const getDb = require("../util/db").getDb;

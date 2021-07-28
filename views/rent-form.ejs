@@ -1,0 +1,20 @@
+<%- include('./includes/head.ejs') %>
+<%- include('./includes/nav.ejs') %>
+
+<form action="/post-rent-form" method="POST">
+    <label for="full name">Your Name</label>
+    <input type="text" name="name" id="">
+    <label for="email">Email Adress</label>
+    <input type="text" name="email" id="">
+    <label for="phone_number">Phone Number</label>
+    <input type="number" name="phone_number" id="">
+    <label for="street">Street Name</label>
+    <input type="text" name="street" id="">
+    <label for="apt">Apt</label>
+    <input type="text" name="apt" id="">
+    <label for="zip_code">Zip Code</label>
+    <input type="text" name="zip_code" id="">
+
+    <button type="submit">Go to Payment</button>
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+</form>
