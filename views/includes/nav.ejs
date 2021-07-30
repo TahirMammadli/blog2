@@ -9,19 +9,21 @@
   <div class="nav-wrapper">
     <a href="/" class="brand-logo">Library</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a href="sass.html">All Books</a></li>
+      <li><a href="/">All Books</a></li>
     <% if(!isLoggedIn) { %> 
       <li><a href="/login">Login</a></li>
       <li><a href="/signup">Sign Up</a></li>
     <% } %>
 
-    <!-- if the user is not logged in display a message saying that they must sign in in order to add their own books-->  
-    <!-- <li><a href="/signup">Add Books</a></li> -->
+   
 
 
     <% if(isLoggedIn) { %> 
       <li><a href="/favorites">Favorites</a></li>
-      <li><a href="/addbooks">Add Books</a></li>
+      <% if(isAdmin === 'admin') { %>
+        <li><a href="/addbooks">Add Books</a></li>
+        <li><a href="/adminBooks">Admin Books</a></li>
+      <% } %>
     <% } %>
 
     <% if(isLoggedIn) { %> 

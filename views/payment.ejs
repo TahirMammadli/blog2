@@ -1,1 +1,20 @@
-<h1>Payment</h1>
+<%- include('./includes/head.ejs') %>
+<%- include('./includes/nav.ejs') %>
+
+
+<body>
+    <h3><%= book.title %></h3>
+    <p><%= book.content %></p>
+    <button id="order_btn">Order</button>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        var stripe = Stripe("pk_test_51JI48TH5C0nwOoDCnoUMfBQKQ5BSZJldWRZMl783mmHfIvxQIUXJFJ5Z7bYArfXQ7Owe91kyCGpN8y6QUgVnEpLz00q81hmPwU")
+        var order_btn = document.getElementById('order_btn')
+        order_btn.addEventListener('click', () => {
+            stripe.redirectToCheckOut({
+                sessionId: ''
+            })
+        })
+    </script>
+</body>
+</html>

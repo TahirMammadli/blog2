@@ -17,8 +17,13 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
+  role: {
+    type: String,
+    required: false
+  },
   resetToken: String,
-  resetTokenExpiration: String
+  resetTokenExpiration: String,
+ 
 })
 
 module.exports = mongoose.model('User', userSchema)

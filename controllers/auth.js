@@ -5,10 +5,18 @@ const crypto = require("crypto");
 const { send } = require("process");
 const { validationResult } = require("express-validator/check");
 
+const sendGrid = require("@sendgrid/mail");
 
+sendGrid.setApiKey(
+  
+);
 
-
-
+const msg = {
+  to: "@gmail.com",
+  from: "@gmail.com",
+  subject: "Testing...",
+  text: "Testing...",
+};
 
 exports.getLogin = (req, res, next) => {
   let message = req.flash("error");
@@ -45,18 +53,6 @@ exports.getSignup = (req, res, next) => {
   });
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
 exports.postSignup = (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
@@ -72,36 +68,68 @@ exports.postSignup = (req, res, next) => {
         password: password,
         first_name: first_name,
         last_name: last_name,
-        confirm_password: req.body.confirm_password
+        confirm_password: req.body.confirm_password,
       },
     });
   }
-
+  if(email === 'tahirmammadli13@gmail.com'){
   return bcrypt
     .hash(password, 12)
     .then((hashedPassword) => {
-      const user = new User({
+      const user = new User({       
         email: email,
         password: hashedPassword,
         first_name: first_name,
         last_name: last_name,
+        role: 'admin'
       });
       return user.save();
     })
     .then((result) => {
       res.redirect("/login");
-      // sendGrid.send(msg, function (err, info) {
-      //   if (err) {
-      //     console.log("Email wasnt sent");
-      //   } else {
-      //     console.log("success");
-      //   }
-      // });
+      sendGrid.send(msg, function (err, info) {
+        if (err) {
+          console.log("Email wasn't sent");
+        } else {
+          console.log("You signed up successfully");
+        }
+      });
     })
+  
+    .catch((err) => {
+      console.log(err);
+    });
+}
+else{
+  return bcrypt
+    .hash(password, 12)
+    .then((hashedPassword) => {
+      const user = new User({       
+        email: email,
+        password: hashedPassword,
+        first_name: first_name,
+        last_name: last_name,
+        role: 'notAdmin'
+      });
+      return user.save();
+    })
+    .then((result) => {
+      res.redirect("/login");
+      sendGrid.send(msg, function (err, info) {
+        if (err) {
+          console.log("Email wasn't sent");
+        } else {
+          console.log("You signed up successfully");
+        }
+      });
+    })
+  
     .catch((err) => {
       console.log(err);
     });
 };
+}
+
 
 exports.postLogin = (req, res, next) => {
   const email = req.body.email;
@@ -112,6 +140,8 @@ exports.postLogin = (req, res, next) => {
         if (doMatch) {
           req.session.isLoggedIn = true;
           req.session.user = user;
+          req.session.isAdmin = user.role
+          console.log(user.role)
           return req.session.save((err) => {
             console.log(err);
             res.redirect("/");

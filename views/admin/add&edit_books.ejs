@@ -3,7 +3,9 @@
 <body>
 <%- include('./includes/nav.ejs') %>
 
-
+<% if(editMode) { %> 
+  <h1>Edit mode</h1>
+  <% } %>
 <div class="row">
     <form class="col s6" action="/postAddBooks" method="POST">
       <div class="row">

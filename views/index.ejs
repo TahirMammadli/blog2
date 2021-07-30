@@ -24,7 +24,7 @@
         <div class="card-content">
         </div>
         <div class="card-action">
-          <a href="/rent-form">Rent</a>
+          <a href="/rent-form/<%= book._id %>">Rent</a>
           <form action="/addToFavorites/<%= book._id %>" method="POST">
             <button>Add To Favorites</button>
             <input type="hidden" name="_csrf" value="<%= csrfToken %>">            

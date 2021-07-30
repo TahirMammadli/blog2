@@ -1,0 +1,39 @@
+<%- include('./includes/head') %>
+<%- include('./includes/nav') %>
+
+
+<body>
+    <div class="row">
+
+    <% if(books.length > 0) { %>
+        <% for(let book of books) { %> 
+             
+                    <div class="col s8 m3">
+                      <div class="card" >
+                        <div class="card-image">
+                          <img src="/book.jpg" width="20" height="200">
+                        </div>
+                        <div class="card-content">
+                          <p><a href="/books/<%= book._id %>"></a><%= book.title %></p>
+                        </div>
+                        <div class="card-content">
+                          <p><%= book.content %></p>
+                        </div>
+                        <div class="card-content">
+                        </div>
+                        <div class="card-action">
+                            <form action="/delete/<%= book._id %>" method="POST">
+                                <button type="submit">
+                                    Delete
+                                </button>
+                                <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+                              </form>                            
+                          <a href="/editBooks/<%= book._id %>?edit=true">Edit</a>                         
+                        </div>
+                      </div> 
+                      <% } %>
+                      <% } else { %>
+                        <h1> No books found </h1>
+                        <%}%>    
+              </div>
+</body>
