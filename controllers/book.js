@@ -23,7 +23,7 @@ exports.favorites = (req, res, next) => {
 };
 
 exports.getAddBooks = (req, res, next) => {
-  res.render("add&edit_books", {
+  res.render("admin/add&edit_books", {
     editMode: false,
   });
 };

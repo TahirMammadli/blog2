@@ -8,7 +8,6 @@ const { validationResult } = require("express-validator/check");
 const sendGrid = require("@sendgrid/mail");
 
 sendGrid.setApiKey(
-  
 );
 
 const msg = {
